@@ -15,7 +15,7 @@ get the keyboard there altogether. Of course you would like to have full control
 this feature.
 
 I have searched the internet quite a lot and found several samples but all of them 
-lacked some functionality here and there for our requirements.
+lacked some functionality here and there.
 
 So I decided to combine them into one sample control and an create a small app to 
 showcase the control.
