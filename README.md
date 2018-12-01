@@ -1,5 +1,5 @@
 # XamarinAndroidEntry
-Custom Entry for Xamarin Forms with full control over the virtual keyboard
+## Custom Entry for Xamarin Forms with full control over the virtual keyboard
 
 ### Why this sample?
 Our app (part of our ERP system) runs on several different devices with Windows CE, 
@@ -41,7 +41,7 @@ job to keep the important parts of your layout visible.
 
 ### A few notes regarding ExtendedEntry:
 
-- The key point of this story is the following:
+- The key point of this story is the following:\
 You **MUST** override the Focus() method of Entry and you **MUST NOT** call the base
 implementation in your code. If you call base.Focus() the virtual keyvoard
 will appear occasionally regardless what you do in your code. In my experience
