@@ -33,38 +33,39 @@ showcase the control.
 1. Full control over the appearance and disappearance of the virtual keyboard
 2. A property to control if the keyboard should appear on focus automatically
 3. An additional object that gives an event when the keyboardheight changes
-(= when the keyboard appears and diappears). It allows you to modify your
-layout accordingly, if necessary. Please note that you don't need this if your
-layout is done like in the sample app. In that case Android does quite a good
-job to keep the important parts of your layout visible.
+(= when the keyboard appears and disappears). It allows you to modify your
+layout accordingly, if necessary.\
+Please note that you don't need this if your layout is done like in the sample 
+app. In that case Android does quite a good job to keep the important parts of your layout visible.
 
 
 ### A few notes regarding ExtendedEntry:
 
 - The key point of this story is the following:\
 You **MUST** override the Focus() method of Entry and you **MUST NOT** call the base
-implementation in your code. If you call base.Focus() the virtual keyvoard
-will appear occasionally regardless what you do in your code. In my experience
+implementation in your code.\
+If you call base.Focus() the virtual keyvoard will appear occasionally regardless what you do in your code. In my experience
 you can reduce this but you will never get it fully under control.
-- If you do not call base.Focus(), your code is much smaller and easier to 
-understand and maintain. For example you do not have to meddle with the
-inputtype-property to keep track of the keyboard type that should be shown.
-- Using the IsPassword-Property works without any additional code (see sample)
+- As an additional benefit your code is much smaller and easier to 
+understand and maintain if you do not call base.Focus().\
+E.g. you do not have to meddle with the
+inputtype-property to keep track of the keyboard type that should be shown and using the IsPassword-Property works without any additional code (see sample)
 
 
 ### Some key lines in the code:
 #### ExtendedEntryRenderer.OnElementChanged:
 - Setting SetTextIsSelectable(true) has two purposes:
   1. It allows to copy and paste text without additional code
-  2. The cursor will appear and blink even if the virtual keboard is not visible
+  2. The cursor will appear and blink even if the virtual keyboard is not visible\
      This is very helpful if you have a hardware keyboard or you would like to know
      where the next scan will enter text
 
 - Setting SetSelectAllOnFocus(true) automatically selects the context of Entry() when it gets 
-  the focus (regardless of the visibility of the keyboard)
+  the focus\
+  (regardless of the visibility of the keyboard)
 
 #### App.OnStart:
-- App.Current.On<Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize)
+- App.Current.On<Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize)\
   This is needed for the automatic resizing of your layout when the virtual keyboard appears 
   and disappears. Without that the whole screen will scroll not the scrollbar inside your
   view (see sample)
@@ -80,7 +81,7 @@ inputtype-property to keep track of the keyboard type that should be shown.
 ### Object SoftwareKeyboardService:
 - Event KeyboardHeightChanged(SoftwareKeyboardEventArgs e)\
   Fired when the area on the screen occupied by the keyboard changes.\
-  SoftwareKeyboardEventArgs contaeins a field with the current height of the keyboard
+  SoftwareKeyboardEventArgs contains a field with the current height of the keyboard
   to allow you to justify your layout accordingly
 - Property bool IsKeyboardVisible\
   Allows you to check if the virtual keyboard is currently visible
