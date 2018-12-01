@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs
+/XamarinAndroidEntry/XamarinAndroidEntry/bin/Debug/netstandard2.0
+/XamarinAndroidEntry/XamarinAndroidEntry/obj
+/XamarinAndroidEntry/XamarinAndroidEntry.Android/bin/Debug
+/XamarinAndroidEntry/XamarinAndroidEntry.Android/obj

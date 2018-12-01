@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolbar="clr-namespace:XamarinAndroidEntry;assembly=XamarinAndroidEntry"
+             xmlns:controls="clr-namespace:XamarinAndroidEntry;assembly=XamarinAndroidEntry"
+             x:Class="XamarinAndroidEntry.MainPage">
+
+    <ContentPage.ToolbarItems>
+        <toolbar:KeyboardToolbarItem Clicked="KeyboardToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Padding="20,20">
+        <ScrollView>
+            <StackLayout >
+                <Label Text="Login"/>
+                <Label Text="User:"/>
+                <controls:ExtendedEntry ShowVirtualKeyboardOnFocus="False"  x:Name="UserNameEntry"/>
+                <Label Text="Password:"/>
+                <controls:ExtendedEntry ShowVirtualKeyboardOnFocus="False"  IsPassword="true" x:Name="PasswordEntry"/>
+                <Label Text="Domain:"/>
+                <controls:ExtendedEntry ShowVirtualKeyboardOnFocus="True"  x:Name="DomainEntry"/>
+            </StackLayout>
+        </ScrollView>
+        <Button Text="OK"/>
+    </StackLayout>
+
+</ContentPage>
