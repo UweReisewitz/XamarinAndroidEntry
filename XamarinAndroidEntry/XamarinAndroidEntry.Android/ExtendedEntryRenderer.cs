@@ -43,6 +43,7 @@ namespace XamarinAndroidEntry.Droid
                 edittext.SetPadding(10, 0, 0, 0);
                 edittext.SetTextIsSelectable(true);
                 edittext.SetSelectAllOnFocus(true);
+                edittext.ShowSoftInputOnFocus = false;
 
                 var view = (ExtendedEntry)Element;
 
