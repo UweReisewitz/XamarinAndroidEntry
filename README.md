@@ -1,6 +1,12 @@
 # XamarinAndroidEntry
 ## Custom Entry for Xamarin Forms with full control over the virtual keyboard
 
+## Update per 2020/04/20
+The previous version did not work on devices running Oreo (8.0/API 26) and above. It 
+was necessary to set the property ShowSoftInputOnFocus on the native edittext to false.
+With that modification the solution works as expected on newer systems (up to 10.0 
+tested in simulator).
+
 ### Why this sample?
 Our app (part of our ERP system) runs on several different devices with Windows CE, 
 iOS and Android. Most of the data entered into the system is scanned but some data
