@@ -43,9 +43,13 @@ namespace XamarinAndroidEntry
             if (_currententry != null)
             {
                 if (_softwarekeyboardservice.IsKeyboardVisible)
+                {
                     _currententry.HideKeyboard();
+                }
                 else
+                {
                     _currententry.ShowKeyboard();
+                }
             }
         }
     }

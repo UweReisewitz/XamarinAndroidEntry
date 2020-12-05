@@ -12,84 +12,84 @@ namespace XamarinAndroidEntry.Droid
 {
     internal class GlobalLayoutListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener
     {
-        private static InputMethodManager _inputManager;
-        private static Activity _activity;
-        private SoftwareKeyboardService _softwarekeyboardservice;
-        private static Android.Views.View _childOfContent;
-        private static float _displayDensity;
-        private static int _displayheight;
-        private static int _extrascreenheight;
-        private static int _keyboardheight;
+        private static InputMethodManager inputManager;
+        private static Activity activity;
+        private readonly SoftwareKeyboardService softwarekeyboardservice;
+        private static Android.Views.View childOfContent;
+        private static float displayDensity;
+        private static int displayheight;
+        private static int extrascreenheight;
+        private static int keyboardheight;
 
         private static void ObtainInputManager()
         {
-            _inputManager = (InputMethodManager)_activity.GetSystemService(Context.InputMethodService);
+            inputManager = (InputMethodManager)activity.GetSystemService(Context.InputMethodService);
         }
 
         public GlobalLayoutListener(Android.App.Activity activity, SoftwareKeyboardService softwarekeyboardservice)
         {
-            _softwarekeyboardservice = softwarekeyboardservice;
-            _activity = activity;
+            this.softwarekeyboardservice = softwarekeyboardservice;
+            GlobalLayoutListener.activity = activity;
             ObtainInputManager();
             GetDisplayData();
         }
 
         private void GetDisplayData()
         {
-            FrameLayout content = (FrameLayout)_activity.FindViewById(Android.Resource.Id.Content);
-            _childOfContent = content.GetChildAt(0);
+            var content = (FrameLayout)activity.FindViewById(Android.Resource.Id.Content);
+            childOfContent = content.GetChildAt(0);
 
-            DisplayMetrics metrics = new DisplayMetrics();
-            _activity.WindowManager.DefaultDisplay.GetMetrics(metrics);
-            _displayDensity = metrics.Density;
+            var metrics = new DisplayMetrics();
+            activity.WindowManager.DefaultDisplay.GetMetrics(metrics);
+            displayDensity = metrics.Density;
 
             CalculateDisplayHeight();
         }
 
         public void OnGlobalLayout()
         {
-            if (_inputManager.Handle == IntPtr.Zero)
+            if (inputManager.Handle == IntPtr.Zero)
             {
                 ObtainInputManager();
             }
 
-            if (_displayheight != _childOfContent.RootView.Height)
+            if (displayheight != childOfContent.RootView.Height)
             {
                 CalculateDisplayHeight();
             }
 
-            int keyboardheight = CalculateKeyboardHeight();
+            var keyboardheight = CalculateKeyboardHeight();
 
-            if (keyboardheight != _keyboardheight)
+            if (keyboardheight != GlobalLayoutListener.keyboardheight)
             {
-                _keyboardheight = keyboardheight;
-                _softwarekeyboardservice.InvokeKeyboardHeightChanged(new SoftwareKeyboardEventArgs(ConvertPixelsToDp((float)keyboardheight)));
+                GlobalLayoutListener.keyboardheight = keyboardheight;
+                this.softwarekeyboardservice.InvokeKeyboardHeightChanged(new SoftwareKeyboardEventArgs(ConvertPixelsToDp((float)keyboardheight)));
             }
         }
 
-        public bool IsKeyboardVisible { get { return _keyboardheight != 0; } }
+        public bool IsKeyboardVisible => keyboardheight != 0;
 
         private static void CalculateDisplayHeight()
         {
-            Rect r = new Rect();
-            _childOfContent.GetWindowVisibleDisplayFrame(r);
-            int visibleheight = r.Height();
-            _displayheight = _childOfContent.RootView.Height;
-            _extrascreenheight = _displayheight - visibleheight;
+            var r = new Rect();
+            childOfContent.GetWindowVisibleDisplayFrame(r);
+            var visibleheight = r.Height();
+            displayheight = childOfContent.RootView.Height;
+            extrascreenheight = displayheight - visibleheight;
         }
 
         private static int CalculateKeyboardHeight()
         {
-            Rect r = new Rect();
-            _childOfContent.GetWindowVisibleDisplayFrame(r);
+            var r = new Rect();
+            childOfContent.GetWindowVisibleDisplayFrame(r);
 
-            int visibleheight = r.Height();
-            return Math.Max(_displayheight - visibleheight - _extrascreenheight, 0);
+            var visibleheight = r.Height();
+            return Math.Max(displayheight - visibleheight - extrascreenheight, 0);
         }
 
         private static int ConvertPixelsToDp(float pixelValue)
         {
-            return (int)((pixelValue) / _displayDensity);
+            return (int)((pixelValue) / displayDensity);
         }
     }
 }

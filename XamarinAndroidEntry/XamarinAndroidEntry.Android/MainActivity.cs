@@ -19,7 +19,7 @@ namespace XamarinAndroidEntry.Droid
             // if you need to size the screen yourself, register this service to get notified when 
             // the keyboard appears or disappears and get the current keyboard height along with it.
             // It also has a property if the keyboard is currently visible
-            SoftwareKeyboardService softwarekeyboardservice = new SoftwareKeyboardService(this);
+            var softwarekeyboardservice = new SoftwareKeyboardService(this);
 
             // in your app you would probably Resolve this through some sort of IOC container
             LoadApplication(new App(softwarekeyboardservice));

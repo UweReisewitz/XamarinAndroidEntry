@@ -8,42 +8,36 @@ namespace XamarinAndroidEntry
         /// <summary>
         /// The font property
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
         public static readonly BindableProperty FontProperty =
             BindableProperty.Create("Font", typeof(Font), typeof(ExtendedEntry), new Font());
 
         /// <summary>
         /// The XAlign property
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
         public static readonly BindableProperty XAlignProperty =
             BindableProperty.Create("XAlign", typeof(TextAlignment), typeof(ExtendedEntry), TextAlignment.Start);
 
         /// <summary>
         /// The YAlign property
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
         public static readonly BindableProperty YAlignProperty =
             BindableProperty.Create("YAlign", typeof(TextAlignment), typeof(ExtendedEntry), TextAlignment.Start);
 
         /// <summary>
         /// The HasBorder property
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
         public static readonly BindableProperty HasBorderProperty =
             BindableProperty.Create("HasBorder", typeof(bool), typeof(ExtendedEntry), true);
 
         /// <summary>
         /// The PlaceholderTextColor property
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
         public static readonly BindableProperty PlaceholderTextColorProperty =
             BindableProperty.Create("PlaceholderTextColor", typeof(Color), typeof(ExtendedEntry), Color.Default);
 
         /// <summary>
         /// The ShowVirtualKeyboardOnFocus property
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
         public static readonly BindableProperty ShowVirtualKeyboardOnFocusProperty =
             BindableProperty.Create("ShowVirtualKeyboardOnFocus", typeof(bool), typeof(ExtendedEntry), true);
 
@@ -57,9 +51,13 @@ namespace XamarinAndroidEntry
         public new bool Focus()
         {
             if (ShowVirtualKeyboardOnFocus)
+            {
                 ShowKeyboard();
+            }
             else
+            {
                 HideKeyboard();
+            }
 
             return true;
         }
@@ -69,28 +67,36 @@ namespace XamarinAndroidEntry
             if (e.IsFocused)
             {
                 if (ShowVirtualKeyboardOnFocus)
+                {
                     ShowKeyboard();
+                }
                 else
+                {
                     HideKeyboard();
+                }
             }
         }
 
         public void ShowKeyboard()
         {
             if (VirtualKeyboardHandler != null)
+            {
                 VirtualKeyboardHandler.ShowKeyboard();
+            }
         }
 
         public void HideKeyboard()
         {
             if (VirtualKeyboardHandler != null)
+            {
                 VirtualKeyboardHandler.HideKeyboard();
+            }
         }
 
         public bool ShowVirtualKeyboardOnFocus
         {
-            get { return (bool)this.GetValue(ShowVirtualKeyboardOnFocusProperty); }
-            set { this.SetValue(ShowVirtualKeyboardOnFocusProperty, value); }
+            get => (bool)this.GetValue(ShowVirtualKeyboardOnFocusProperty);
+            set => this.SetValue(ShowVirtualKeyboardOnFocusProperty, value);
         }
 
         /// <summary>
@@ -98,8 +104,8 @@ namespace XamarinAndroidEntry
         /// </summary>
         public Font Font
         {
-            get { return (Font)GetValue(FontProperty); }
-            set { SetValue(FontProperty, value); }
+            get => (Font)GetValue(FontProperty);
+            set => SetValue(FontProperty, value);
         }
 
         /// <summary>
@@ -107,8 +113,8 @@ namespace XamarinAndroidEntry
         /// </summary>
         public TextAlignment XAlign
         {
-            get { return (TextAlignment)GetValue(XAlignProperty); }
-            set { SetValue(XAlignProperty, value); }
+            get => (TextAlignment)GetValue(XAlignProperty);
+            set => SetValue(XAlignProperty, value);
         }
 
         /// <summary>
@@ -116,8 +122,8 @@ namespace XamarinAndroidEntry
         /// </summary>
         public TextAlignment YAlign
         {
-            get { return (TextAlignment)GetValue(YAlignProperty); }
-            set { SetValue(YAlignProperty, value); }
+            get => (TextAlignment)GetValue(YAlignProperty);
+            set => SetValue(YAlignProperty, value);
         }
 
         /// <summary>
@@ -125,8 +131,8 @@ namespace XamarinAndroidEntry
         /// </summary>
         public bool HasBorder
         {
-            get { return (bool)GetValue(HasBorderProperty); }
-            set { SetValue(HasBorderProperty, value); }
+            get => (bool)GetValue(HasBorderProperty);
+            set => SetValue(HasBorderProperty, value);
         }
 
         /// <summary>
@@ -134,8 +140,8 @@ namespace XamarinAndroidEntry
         /// </summary>
         public Color PlaceholderTextColor
         {
-            get { return (Color)GetValue(PlaceholderTextColorProperty); }
-            set { SetValue(PlaceholderTextColorProperty, value); }
+            get => (Color)GetValue(PlaceholderTextColorProperty);
+            set => SetValue(PlaceholderTextColorProperty, value);
         }
 
         public event EventHandler<EventArgs> LeftSwipe;

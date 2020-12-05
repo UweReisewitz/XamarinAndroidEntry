@@ -6,16 +6,16 @@ namespace XamarinAndroidEntry.Droid
     {
         public virtual event EventHandler<SoftwareKeyboardEventArgs> KeyboardHeightChanged;
 
-        private readonly Android.App.Activity _activity;
-        private readonly GlobalLayoutListener _globalLayoutListener;
+        private readonly Android.App.Activity activity;
+        private readonly GlobalLayoutListener globalLayoutListener;
 
-        public bool IsKeyboardVisible { get { return _globalLayoutListener.IsKeyboardVisible; } }
+        public bool IsKeyboardVisible => globalLayoutListener.IsKeyboardVisible;
 
         public SoftwareKeyboardService(Android.App.Activity activity)
         {
-            _activity = activity;
-            _globalLayoutListener = new GlobalLayoutListener(activity, this);
-            _activity.Window.DecorView.ViewTreeObserver.AddOnGlobalLayoutListener(_globalLayoutListener);
+            this.activity = activity;
+            globalLayoutListener = new GlobalLayoutListener(activity, this);
+            this.activity.Window.DecorView.ViewTreeObserver.AddOnGlobalLayoutListener(this.globalLayoutListener);
         }
 
         internal void InvokeKeyboardHeightChanged(SoftwareKeyboardEventArgs args)

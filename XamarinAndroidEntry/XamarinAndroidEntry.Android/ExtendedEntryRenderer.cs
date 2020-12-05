@@ -26,7 +26,7 @@ namespace XamarinAndroidEntry.Droid
         /// <summary>
         /// The _down x
         /// </summary>
-        private float _downX, _downY, _upX, _upY;
+        private float downX, downY, upX, upY;
 
         /// <summary>
         /// Called when [element changed].
@@ -38,7 +38,7 @@ namespace XamarinAndroidEntry.Droid
 
             if ((e.OldElement == null) && (Control != null))
             {
-                EditText edittext = (EditText)Control;
+                var edittext = (EditText)Control;
 
                 edittext.SetPadding(10, 0, 0, 0);
                 edittext.SetTextIsSelectable(true);
@@ -61,7 +61,7 @@ namespace XamarinAndroidEntry.Droid
         {
             Control.RequestFocus();
 
-            InputMethodManager inputMethodManager = Control.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
+            var inputMethodManager = Control.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
             inputMethodManager.ShowSoftInput(Control, ShowFlags.Forced);
             inputMethodManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.ImplicitOnly);
         }
@@ -69,7 +69,7 @@ namespace XamarinAndroidEntry.Droid
         public void HideKeyboard()
         {
             Control.RequestFocus();
-            InputMethodManager inputMethodManager = Control.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
+            var inputMethodManager = Control.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
             inputMethodManager.HideSoftInputFromWindow(this.Control.WindowToken, HideSoftInputFlags.None); // this probably needs to be set to ToogleSoftInput, forced.
         }
 
@@ -79,23 +79,23 @@ namespace XamarinAndroidEntry.Droid
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="Android.Views.View.TouchEventArgs"/> instance containing the event data.</param>
-        void HandleTouch(object sender, global::Android.Views.View.TouchEventArgs e)
+        private void HandleTouch(object sender, global::Android.Views.View.TouchEventArgs e)
         {
             var element = this.Element as ExtendedEntry;
             switch (e.Event.Action)
             {
                 case MotionEventActions.Down:
-                    _downX = e.Event.GetX();
-                    _downY = e.Event.GetY();
+                    downX = e.Event.GetX();
+                    downY = e.Event.GetY();
                     return;
                 case MotionEventActions.Up:
                 case MotionEventActions.Cancel:
                 case MotionEventActions.Move:
-                    _upX = e.Event.GetX();
-                    _upY = e.Event.GetY();
+                    upX = e.Event.GetX();
+                    upY = e.Event.GetY();
 
-                    float deltaX = _downX - _upX;
-                    float deltaY = _downY - _upY;
+                    var deltaX = downX - upX;
+                    var deltaY = downY - upY;
 
                     // swipe horizontal?
                     if (Math.Abs(deltaX) > Math.Abs(deltaY))
@@ -142,29 +142,45 @@ namespace XamarinAndroidEntry.Droid
             var view = (ExtendedEntry)Element;
 
             if (e.PropertyName == ExtendedEntry.FontProperty.PropertyName)
+            {
                 SetFont(view);
+            }
+
             if (e.PropertyName == ExtendedEntry.XAlignProperty.PropertyName)
+            {
                 SetTextAlignment(view);
+            }
+
             if (e.PropertyName == ExtendedEntry.YAlignProperty.PropertyName)
+            {
                 SetTextAlignment(view);
+            }
             //if (e.PropertyName == ExtendedEntry.HasBorderProperty.PropertyName)
             //    SetBorder(view);
             if (e.PropertyName == ExtendedEntry.TextColorProperty.PropertyName)
+            {
                 SetTextColor(view);
+            }
+
             if (e.PropertyName == ExtendedEntry.PlaceholderTextColorProperty.PropertyName)
+            {
                 SetPlaceholderTextColor(view);
+            }
+
             if (e.PropertyName == ExtendedEntry.MaxLengthProperty.PropertyName)
+            {
                 SetMaxLength(view);
+            }
         }
 
         /// <summary>
         /// Sets the border.
         /// </summary>
         /// <param name="view">The view.</param>
-        private void SetBorder(ExtendedEntry view)
-        {
-            //NotCurrentlySupported: HasBorder peroperty not suported on Android
-        }
+        //private void SetBorder(ExtendedEntry view)
+        //{
+        //    //NotCurrentlySupported: HasBorder property not supported on Android
+        //}
 
         /// <summary>
         /// Sets the Text alignment.
@@ -222,7 +238,9 @@ namespace XamarinAndroidEntry.Droid
         private void SetPlaceholderTextColor(ExtendedEntry view)
         {
             if (view.PlaceholderTextColor != Xamarin.Forms.Color.Default)
+            {
                 Control.SetHintTextColor(view.PlaceholderTextColor.ToAndroid());
+            }
         }
 
 
@@ -233,7 +251,9 @@ namespace XamarinAndroidEntry.Droid
         private void SetTextColor(ExtendedEntry view)
         {
             if (view.TextColor != Xamarin.Forms.Color.Default)
+            {
                 Control.SetTextColor(view.TextColor.ToAndroid());
+            }
         }
         /// <summary>
         /// Sets the MaxLength characteres.
