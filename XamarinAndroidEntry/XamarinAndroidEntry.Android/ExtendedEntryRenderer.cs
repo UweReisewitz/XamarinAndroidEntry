@@ -48,8 +48,7 @@ namespace XamarinAndroidEntry.Droid
                 var view = (ExtendedEntry)Element;
 
                 SetFont(view);
-                SetXAlignment(view);
-                SetYAlignment(view);
+                SetTextAlignment(view);
                 //SetBorder(view);
                 SetPlaceholderTextColor(view);
                 SetMaxLength(view);
@@ -145,9 +144,9 @@ namespace XamarinAndroidEntry.Droid
             if (e.PropertyName == ExtendedEntry.FontProperty.PropertyName)
                 SetFont(view);
             if (e.PropertyName == ExtendedEntry.XAlignProperty.PropertyName)
-                SetXAlignment(view);
+                SetTextAlignment(view);
             if (e.PropertyName == ExtendedEntry.YAlignProperty.PropertyName)
-                SetYAlignment(view);
+                SetTextAlignment(view);
             //if (e.PropertyName == ExtendedEntry.HasBorderProperty.PropertyName)
             //    SetBorder(view);
             if (e.PropertyName == ExtendedEntry.TextColorProperty.PropertyName)
@@ -168,43 +167,39 @@ namespace XamarinAndroidEntry.Droid
         }
 
         /// <summary>
-        /// Sets the X alignment.
+        /// Sets the Text alignment.
         /// </summary>
         /// <param name="view">The view.</param>
-        private void SetXAlignment(ExtendedEntry view)
+        private void SetTextAlignment(ExtendedEntry view)
         {
+            var gravity = GravityFlags.NoGravity;
+
             switch (view.XAlign)
             {
                 case Xamarin.Forms.TextAlignment.Center:
-                    Control.Gravity = GravityFlags.CenterHorizontal;
+                    gravity |= GravityFlags.CenterHorizontal;
                     break;
                 case Xamarin.Forms.TextAlignment.End:
-                    Control.Gravity = GravityFlags.End;
+                    gravity |= GravityFlags.End;
                     break;
                 case Xamarin.Forms.TextAlignment.Start:
-                    Control.Gravity = GravityFlags.Start;
+                    gravity |= GravityFlags.Start;
                     break;
             }
-        }
 
-        /// <summary>
-        /// Sets the Y alignment.
-        /// </summary>
-        /// <param name="view">The view.</param>
-        private void SetYAlignment(ExtendedEntry view)
-        {
             switch (view.YAlign)
             {
                 case Xamarin.Forms.TextAlignment.Center:
-                    Control.Gravity = GravityFlags.CenterVertical;
+                    gravity |= GravityFlags.CenterVertical;
                     break;
                 case Xamarin.Forms.TextAlignment.End:
-                    Control.Gravity = GravityFlags.Bottom;
+                    gravity |= GravityFlags.Bottom;
                     break;
                 case Xamarin.Forms.TextAlignment.Start:
-                    Control.Gravity = GravityFlags.Top;
+                    gravity |= GravityFlags.Top;
                     break;
             }
+            Control.Gravity = gravity;
         }
 
         /// <summary>

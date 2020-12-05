@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolbar="clr-namespace:XamarinAndroidEntry;assembly=XamarinAndroidEntry"
@@ -28,7 +28,7 @@
             </ScrollView>
             <Button Text="OK"/>
         </StackLayout>
-        <controls:ExtendedEntry Grid.Row="1" Text="Centered Text" XAlign="End" YAlign="Center" BackgroundColor="Green"/>
+        <controls:ExtendedEntry Grid.Row="1" Text="Centered Text" XAlign="Center" YAlign="Center" BackgroundColor="Green"/>
     </Grid>
 
 </ContentPage>
