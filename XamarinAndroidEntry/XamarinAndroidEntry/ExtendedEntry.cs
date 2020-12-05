@@ -20,6 +20,13 @@ namespace XamarinAndroidEntry
             BindableProperty.Create("XAlign", typeof(TextAlignment), typeof(ExtendedEntry), TextAlignment.Start);
 
         /// <summary>
+        /// The YAlign property
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
+        public static readonly BindableProperty YAlignProperty =
+            BindableProperty.Create("YAlign", typeof(TextAlignment), typeof(ExtendedEntry), TextAlignment.Start);
+
+        /// <summary>
         /// The HasBorder property
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
@@ -102,6 +109,15 @@ namespace XamarinAndroidEntry
         {
             get { return (TextAlignment)GetValue(XAlignProperty); }
             set { SetValue(XAlignProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the Y alignment of the text
+        /// </summary>
+        public TextAlignment YAlign
+        {
+            get { return (TextAlignment)GetValue(YAlignProperty); }
+            set { SetValue(YAlignProperty, value); }
         }
 
         /// <summary>
