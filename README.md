@@ -1,6 +1,10 @@
 # XamarinAndroidEntry
 ## Custom Entry for Xamarin Forms with full control over the virtual keyboard
 
+## Update per 2020/12/06
+It's now possible to set the vertical Alignment as well (use YAlign). The Sample app
+has been extended to show this feature.
+
 ## Update per 2020/04/20
 The previous version did not work on devices running Oreo (8.0/API 26) and above. It 
 was necessary to set the property ShowSoftInputOnFocus on the native edittext to false.
